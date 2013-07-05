@@ -18,7 +18,7 @@ set(_src
   rpcchannel.cpp
   vtkcommunicatorchannel.cpp
   servicedispatcher.cpp)
-
+message(${_src})
 # Set in parent scope so we can using it when configuring the config file
 set(ProtoCall_RUNTIME_SOURCE ${_src} PARENT_SCOPE)
 

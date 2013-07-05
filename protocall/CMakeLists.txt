@@ -1,13 +1,16 @@
 find_package(protobuf REQUIRED NO_MODULE)
 include_directories(SYSTEM ${protobuf_INCLUDE_DIRS})
 
+add_subdirectory(runtime)
+add_subdirectory(plugin)
+
 # config files for build tree
 set(ProtoCall_INCLUDE_DIRS ${CMAKE_SOURCE_DIR}
-  ${CMAKE_SOURCE_DIR}/protcallruntime)
+  ${CMAKE_SOURCE_DIR}/protocall/runtime)
 set(ProtoCall_LIBRARY_DIR
   ${CMAKE_BINARY_DIR}${INSTALL_LIBRARY_DIR}${LIB_SUFFIX})
 set(ProtoCall_TARGETS_DIR ${CMAKE_BINARY_DIR})
-set(ProtoCall_PROTO_DIR ${CMAKE_CURRENT_SOURCE_DIR}/runtime)
+set(ProtoCall_PROTO_DIR ${CMAKE_CURRENT_SOURCE_DIR}/runtime/proto)
 set(ProtoCall_CMAKE_DIR ${CMAKE_SOURCE_DIR}/cmake)
 set(ProtoCall_SOURCE_DIR ${CMAKE_SOURCE_DIR}/protocall/runtime)
 configure_file(ProtoCallConfig.cmake.in
@@ -25,8 +28,7 @@ set(ProtoCall_PROTO_DIR ${ProtoCall_LIBRARY_DIR}/proto)
 set(ProtoCall_SOURCE_DIR
   ${ProtoCall_INSTALL_PREFIX}/${INSTALL_SOURCE_DIR}/protocall/runtime)
 
-add_subdirectory(runtime)
-add_subdirectory(plugin)
+message("parent: ${ProtoCall_RUNTIME_SOURCE}")
 
 # export targets file in build tree
 export(TARGETS protoc-gen-protocallc
